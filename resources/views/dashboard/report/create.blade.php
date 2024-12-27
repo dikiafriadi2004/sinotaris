@@ -53,7 +53,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Tanggal Laporan</label>
-                                <input class="datepicker-here form-control" type="text" name="date_report" data-date-format="dd/mm/yyyy" placeholder="Tanggal Laporan" data-language="en">
+                                <input class="datepicker-here form-control" type="text" name="date_report" data-date-format="dd/mm/yyyy" value="" placeholder="Tanggal Laporan" data-language="en">
                             </div>
                             <button class="btn btn-primary" type="submit">Simpan</button>
                         </form>

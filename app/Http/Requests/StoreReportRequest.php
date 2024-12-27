@@ -24,6 +24,7 @@ class StoreReportRequest extends FormRequest
         return [
             'name_akta' => ['required', 'string', 'max:255'],
             'date_report' => ['required', 'date'],
+            'doc_report' => ['required', 'string', 'mimes:pdf'],
         ];
     }
 }
