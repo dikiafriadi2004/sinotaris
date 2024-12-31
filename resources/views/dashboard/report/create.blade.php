@@ -18,7 +18,7 @@
             <div class="col-md-6">
                 <ul class="breadcrumb justify-content-end mb-0">
                     <li class="breadcrumb-item"><a href="{{ route('ppat.index') }}">Daftar Notaris</a></li>
-                    <li class="breadcrumb-item"><a class="text-light" href="#!">Tambah Notaris</a></li>
+                    <li class="breadcrumb-item"><a class="text-light" href="#!">Tambah Laporan Notaris</a></li>
                 </ul>
             </div>
         </div>
@@ -32,7 +32,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Tambah Notaris</h4>
+                        <h4>Tambah Laporan Notaris</h4>
                     </div>
                     <div class="card-body">
                         @if ($errors->any())
@@ -48,12 +48,20 @@
                         <form action="{{ route('report.store', $ppat->slug) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label class="form-label">Nama Akta</label>
-                                <input class="form-control" type="text" name="name_akta" placeholder="Nama Akta">
+                                <label class="form-label">Nama Laporan</label>
+                                <input class="form-control" type="text" name="name_report" value="{{ old('name_report') }}" placeholder="Nama Akta">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Tanggal Laporan</label>
-                                <input class="datepicker-here form-control" type="text" name="date_report" data-date-format="dd/mm/yyyy" value="" placeholder="Tanggal Laporan" data-language="en">
+                                <input class="form-control" type="date" name="date_report">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Dokumen Laporan</label>
+                                <input class="form-control" type="file" name="doc_report">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Dokumen Temuan</label>
+                                <input class="form-control" type="file" name="doc_finding">
                             </div>
                             <button class="btn btn-primary" type="submit">Simpan</button>
                         </form>

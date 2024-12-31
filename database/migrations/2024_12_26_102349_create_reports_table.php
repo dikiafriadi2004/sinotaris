@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->string('name_akta');
+            $table->string('name_report');
             $table->date('date_report');
             $table->foreignId('ppat_id')->constrained()->onDelete('cascade');
+            $table->string('doc_report')->nullable();
+            $table->string('doc_finding')->nullable();
             $table->timestamps();
         });
     }

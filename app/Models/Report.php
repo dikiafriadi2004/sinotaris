@@ -10,9 +10,11 @@ class Report extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name_akta',
+        'name_report',
         'date_report',
-        'ppat_id'
+        'ppat_id',
+        'doc_report',
+        'doc_finding'
     ];
 
     public function ppat()

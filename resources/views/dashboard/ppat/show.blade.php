@@ -5,6 +5,10 @@
 @endsection
 
 @push('css')
+    <!--Datatable-->
+    <link href="{{ asset('assets/css/vendor/datatable/jquery.dataTables.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/vendor/datatable/buttons.dataTables.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/vendor/datatable/custom-datatable.css') }}" rel="stylesheet">
 @endpush
 
 @section('breadcrumb')
@@ -39,28 +43,63 @@
                                                 <div class="icon-wrap"><i class="fa fa-user"></i></div>{{ $ppat->name }}
                                             </li>
                                             <li>
-                                                <div class="icon-wrap"><i class="fa fa-map-marker"></i></div>{{ $ppat->address }}
+                                                <div class="icon-wrap"><i class="fa fa-map-marker"></i></div>
+                                                {{ $ppat->address }}
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="body-invoice">
-                                    <a href="{{ route('report.create', $ppat->slug) }}" class="btn btn-primary mb-3">Tambah Laporan</a>
+                                    <a href="{{ route('report.create', $ppat->slug) }}" class="btn btn-primary mb-3">Tambah
+                                        Laporan</a>
                                     <div class="table-responsive">
-                                        <table class="table ml-1">
+                                        <table class="display dataTable cell-border table ml-1" id="basicdata-tbl"
+                                            style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Nama Akta</th>
+                                                    <th>Nama Laporan</th>
                                                     <th>Tanggal Laporan</th>
+                                                    <th>Dokumen Laporan</th>
+                                                    <th>Dokumen Temuan</th>
+                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($ppat->reports as $report)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $report->name_akta }}</td>
+                                                        <td>{{ $report->name_report }}</td>
                                                         <td>{{ $report->date_report }}</td>
+                                                        <td>
+                                                            @if ($report->doc_report)
+                                                                <a
+                                                                    href="{{ asset(getenv('CUSTOM_DOC_LOCATION') . '/' . $report->doc_report) }}">Download</a>
+                                                            @else
+                                                                <span>Tidak Ada Dokumen</span>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @if ($report->doc_finding)
+                                                                <a
+                                                                    href="{{ asset(getenv('CUSTOM_DOC_LOCATION') . '/' . $report->doc_finding) }}">Download</a>
+                                                            @else
+                                                                <span>Tidak Ada Dokumen</span>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('report.edit', [$ppat->slug, $report]) }}"
+                                                                class="btn btn-outline-primary mb-2">Ubah</a>
+                                                            <form
+                                                                action="{{ route('report.destroy', [$ppat->slug, $report]) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button class="btn btn-outline-danger confirm-delete"
+                                                                    type="submit">Hapus</button>
+                                                            </form>
+                                                        </td>
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -77,4 +116,13 @@
 @endsection
 
 @push('js')
+    <!-- Datatable-->
+    <script src="{{ asset('assets/js/vendors/datatable/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendors/datatable/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendors/datatable/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendors/datatable/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendors/datatable/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendors/datatable/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/js/vendors/datatable/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendors/datatable/custom-datatable.js') }}"></script>
 @endpush
