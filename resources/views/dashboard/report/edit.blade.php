@@ -56,8 +56,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Tanggal Laporan</label>
-                                    <input class="form-control" type="date" value="{{ $report->date_report }}"
-                                        name="date_report">
+                                    {{-- <input class="form-control" type="date" value="{{ $report->date_report }}"
+                                        name="date_report"> --}}
+                                    <input class="datepicker-here form-control" type="text" name="date_report"
+                                        id="date_report" data-date-format="dd/mm/yyyy"
+                                        value="{{ old('date_report', $report->date_report) }}" data-language="en">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Dokumen Laporan</label>

@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StorePpatRequest;
+use App\Http\Requests\UpdatePpatRequest;
 
 class PpatController extends Controller
 {
@@ -40,7 +41,7 @@ class PpatController extends Controller
             $ppat = Ppat::create($validated);
         });
 
-        return redirect()->route('ppat.index');
+        return redirect()->route('ppat.index')->with('success', 'Data notaris berhasil ditambah');
     }
 
     /**
@@ -56,15 +57,22 @@ class PpatController extends Controller
      */
     public function edit(Ppat $ppat)
     {
-        //
+        return view('dashboard.ppat.edit', compact('ppat'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ppat $ppat)
+    public function update(UpdatePpatRequest $request, Ppat $ppat)
     {
-        //
+        DB::transaction(function() use ($request, $ppat) {
+            $validated = $request->validated();
+            $validated['slug'] = Str::slug($validated['name']);
+
+            $ppat->update($validated);
+        });
+
+        return redirect()->route('ppat.index')->with('success', 'Data Notaris berhasil diubah');
     }
 
     /**

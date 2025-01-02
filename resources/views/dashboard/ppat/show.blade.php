@@ -33,6 +33,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        <div class="swal-notif" data-swal="{!! Session::get('success') !!}"></div>
                         <div class="card-body cdx-invoice">
                             <div id="cdx-invoice">
                                 <div class="invoice-user">
@@ -125,4 +126,44 @@
     <script src="{{ asset('assets/js/vendors/datatable/vfs_fonts.js') }}"></script>
     <script src="{{ asset('assets/js/vendors/datatable/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendors/datatable/custom-datatable.js') }}"></script>
+    <script type="text/javascript">
+        $(".confirm-delete").click(function(event) {
+            const form = $(this).closest("form")
+
+            event.preventDefault()
+
+            Swal.fire({
+                title: "Anda Yakin?",
+                text: "Data akan terhapus!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Hapus!",
+                        text: "Data berhasil dihapus.",
+                        icon: "success",
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                    form.submit()
+                }
+            });
+        })
+
+        const swal = $('.swal-notif').data('swal');
+        if (swal) {
+            Swal.fire({
+                'title': 'Success',
+                'text': swal,
+                'icon': 'success',
+                'showConfirmButton': false,
+                'timer': 2000
+
+            })
+        }
+    </script>
 @endpush

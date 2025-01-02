@@ -50,7 +50,7 @@
     </div>
     <!-- footer start-->
     <footer class="codex-footer">
-        <p>Copyright 2024 © Rohi All rights reserved.</p>
+        <p>Copyright 2025 © Media Usaha Digital Kreatif All rights reserved.</p>
     </footer>
     <!-- footer end-->
     <!-- back to top start //-->
@@ -68,12 +68,10 @@
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <!-- Scrollbar-->
     <script src="{{ asset('assets/js/vendors/simplebar.js') }}"></script>
-    <!-- apex chart-->
-    <script src="{{ asset('assets/js/vendors/chart/apexcharts.js') }}"></script>
-    <!-- dashboard-->
-    <script src="{{ asset('assets/js/dashboard/dashboard.js') }}"></script>
     <!-- Custom script-->
     <script src="{{ asset('assets/js/custom-script.js') }}"></script>
+    <!-- Sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('js')
 </body>
 

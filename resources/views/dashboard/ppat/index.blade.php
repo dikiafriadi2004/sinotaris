@@ -11,7 +11,7 @@
     <div class="codex-breadcrumb">
         <div class="row">
             <div class="col-4">
-                <h1 class="fs-5">Default</h1>
+                <h1 class="fs-5">Daftar Notaris</h1>
             </div>
             <div class="col-8">
                 <ul class="breadcrumb justify-content-end mb-0">
@@ -24,6 +24,7 @@
 
 @section('content')
     <div class="theme-body common-dash" data-simplebar>
+        <div class="swal-notif" data-swal="{!! Session::get('success') !!}"></div>
         <div class="custom-container">
             <div class="row">
                 <div class="col-xxl-12">
@@ -54,7 +55,10 @@
                                                 <td>{{ $ppat->name }}</td>
                                                 <td>{{ $ppat->address }}</td>
                                                 <td>
-                                                    <a href="{{ route('ppat.show', $ppat) }}" class="btn btn-outline-primary">Detail Laporan</a>
+                                                    <a href="{{ route('ppat.show', $ppat) }}"
+                                                        class="btn btn-outline-info">Detail Laporan</a>
+                                                    <a href="{{ route('ppat.edit', $ppat) }}"
+                                                        class="btn btn-outline-primary">Ubah</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -70,4 +74,16 @@
 @endsection
 
 @push('js')
+    <script type="text/javascript">
+        const swal = $('.swal-notif').data('swal');
+        if (swal) {
+            Swal.fire({
+                'title': 'Success',
+                'text': swal,
+                'icon': 'success',
+                'showConfirmButton': false,
+                'timer': 2000
+            })
+        }
+    </script>
 @endpush
