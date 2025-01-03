@@ -71,7 +71,8 @@
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{ $report->name_report }}</td>
-                                                        <td>{{ $report->date_report }}</td>
+                                                        {{-- <td>{{ $report->date_report }}</td> --}}
+                                                        <td>{{ date('d M Y', strtotime($report->date_report)) }}</td>
                                                         <td>
                                                             @if ($report->doc_report)
                                                                 <a

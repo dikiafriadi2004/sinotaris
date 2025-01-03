@@ -43,16 +43,19 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('ppat.update', $ppat->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('ppat.update', $ppat->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
                                     <label class="form-label">Nama Notaris</label>
-                                    <input class="form-control" type="text" name="name" placeholder="Nama Notaris" value="{{ $ppat->name }}">
+                                    <input class="form-control" type="text" name="name" placeholder="Nama Notaris"
+                                        value="{{ $ppat->name }}">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Alamat</label>
-                                    <input class="form-control" type="text" name="address" placeholder="Alamat" value="{{ $ppat->address }}">
+                                    <input class="form-control" type="text" name="address" placeholder="Alamat"
+                                        value="{{ $ppat->address }}">
                                 </div>
                                 <button class="btn btn-primary" type="submit">Simpan</button>
                             </form>
