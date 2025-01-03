@@ -9,8 +9,8 @@
             <li class="cdxmenu-title">
                 <h5>application</h5>
             </li>
-            <li class="menu-item"><a href="{{ route('ppat.index') }}">
-                    <div class="icon-item"><i data-feather="calendar"></i></div><span>Notaris</span>
+            <li class="menu-item {{ (request()->is('ppat*') ? 'active' : '') }}"><a href="{{ route('ppat.index') }}">
+                    <div class="icon-item {{ (request()->is('ppat*') ? 'active' : '') }}"><i data-feather="calendar"></i></div><span>Notaris</span>
                 </a></li>
         </ul>
     </div>
