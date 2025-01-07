@@ -30,7 +30,7 @@
                 <div class="col-xxl-12">
                     <div class="card project-summarytbl">
                         <div class="card-header">
-                            <h4>Daftar Notaris</h4>
+                            <h4></h4>
                             <div class="setting-card action-menu">
                                 <div>
                                     <a href="{{ route('ppat.create') }}" class="btn btn-outline-primary">Tambah Notaris</a>
