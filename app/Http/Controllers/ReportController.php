@@ -43,7 +43,7 @@ class ReportController extends Controller
                 }
 
                 $doc_report = $request->file('doc_report');
-                $doc_report_name = time() . "_" . $doc_report->getClientOriginalName();
+                $doc_report_name = Str::slug($validated['name_report'], '_') . "_" . time() . "_" . $doc_report->getClientOriginalName();
                 $destination_path = public_path(getenv('CUSTOM_DOC_LOCATION'));
                 $doc_report->move($destination_path, $doc_report_name);
                 $validated['doc_report'] = isset($doc_report_name) ? $doc_report_name : null;
@@ -55,7 +55,7 @@ class ReportController extends Controller
                 }
                 
                 $doc_finding = $request->file('doc_finding');
-                $doc_finding_name = time() . "_" . $doc_finding->getClientOriginalName();
+                $doc_finding_name = Str::slug($validated['name_report'], '_') . "_" . time() . "_" . $doc_finding->getClientOriginalName();
                 $destination_path = public_path(getenv('CUSTOM_DOC_LOCATION'));
                 $doc_finding->move($destination_path, $doc_finding_name);
                 $validated['doc_finding'] = isset($doc_finding_name) ? $doc_finding_name : null;
@@ -66,7 +66,7 @@ class ReportController extends Controller
             $report = Report::create($validated);
         });
 
-        return redirect()->route('ppat.show', $ppat->id);
+        return redirect()->route('ppat.show', $ppat->id)->with('success', 'Data laporan notaris berhasil dibuat');
     }
 
     /**
@@ -99,7 +99,7 @@ class ReportController extends Controller
                 }
 
                 $doc_report = $request->file('doc_report');
-                $doc_report_name = time() . "_" . $doc_report->getClientOriginalName();
+                $doc_report_name = Str::slug($validated['name_report'], '_') . "_" . time() . "_" . $doc_report->getClientOriginalName();
                 $destination_path = public_path(getenv('CUSTOM_DOC_LOCATION'));
                 $doc_report->move($destination_path, $doc_report_name);
                 $validated['doc_report'] = isset($doc_report_name) ? $doc_report_name : null;
@@ -111,7 +111,7 @@ class ReportController extends Controller
                 }
 
                 $doc_finding = $request->file('doc_finding');
-                $doc_finding_name = time() . "_" . $doc_finding->getClientOriginalName();
+                $doc_finding_name = Str::slug($validated['name_report'], '_', '_') . "_" . time() . "_" . $doc_finding->getClientOriginalName();
                 $destination_path = public_path(getenv('CUSTOM_DOC_LOCATION'));
                 $doc_finding->move($destination_path, $doc_finding_name);
                 $validated['doc_finding'] = isset($doc_finding_name) ? $doc_finding_name : null;
@@ -120,7 +120,6 @@ class ReportController extends Controller
             $report->update($validated);
         });
 
-        // return redirect()->back()->with('success', 'Data anggota berhasil diubah');
         return redirect()->route('ppat.show', $report->ppat_id)->with('success', 'Data laporan notaris berhasil diubah');
     }
 
